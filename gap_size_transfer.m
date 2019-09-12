@@ -21,6 +21,7 @@ P_2 = string(P_2);
 % nback_1:
 filenames_1 = {
     'crossing_start_1_';
+    'crossing_start_3_';
     'crossing_1_1_';
     'crossing_1_2_';
     'crossing_1_3_';
@@ -40,7 +41,6 @@ filenames_1 = {
     'crossing_1_17_';
     'crossing_1_18_';
     'crossing_1_19_';
-    'crossing_1_20_';
     'crossing_1_break_1_';
     'crossing_1_break_2_';
     'crossing_1_break_3_';
@@ -77,7 +77,7 @@ filenames_2 = {
     
 %% read in TRF files
 
-cd('C:\Users\zuse\OneDrive\Masterarbeit\SILAB\pire_v5_1\modules\area2')
+cd('C:\Users\zuse\OneDrive\Masterarbeit\SILAB\pire_benedikt\modules\area2')
 
 for nback = 1:2 % loop over nback level
     
