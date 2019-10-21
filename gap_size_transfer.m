@@ -4,12 +4,15 @@ clear all;
 close all;
 clc;
 
+% load position matrices
+
 cd('C:\Users\zuse\OneDrive\Masterarbeit\Code')
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_1.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_2.mat');
 
-%% load position matrices
-
-load('C:\Users\zuse\OneDrive\Masterarbeit\Data\gap_sizes\position_matrix_1.mat');
-load('C:\Users\zuse\OneDrive\Masterarbeit\Data\gap_sizes\position_matrix_2.mat');
+% cd('C:\Users\bened\OneDrive\Masterarbeit\Code')
+% load('C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_1.mat');
+% load('C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_2.mat');
 
 %% convert values to strings
 
