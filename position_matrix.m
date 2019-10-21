@@ -4,6 +4,12 @@ clear all
 close all
 clc
 
+cd = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\';
+PATHOUT = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes';
+
+% cd = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\';
+% PATHOUT = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes';
+
 %% define gap sizes:
 % 6 different gap sizes in total
 
@@ -173,10 +179,10 @@ for n = 1:2 % for both n_back levels
     % store positions for both n_back levels and save:
     if n == 1
         P_1 = P;
-        save('C:\Users\zuse\OneDrive\Masterarbeit\Data\gap_sizes\position_matrix_1.mat','P_1')
+        save([PATHOUT,'position_matrix_1.mat'],'P_1')
     elseif n == 2
         P_2 = P;
-        save('C:\Users\zuse\OneDrive\Masterarbeit\Data\gap_sizes\position_matrix_2.mat','P_2')
+        save([PATHOUT,'position_matrix_2.mat'],'P_2')
     end
     
 end % end of n_back loop
