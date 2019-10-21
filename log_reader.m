@@ -4,9 +4,13 @@ clear all;
 close all;
 clc;
 
-%% specify paths and datasets
+cd = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\Silab_Pilot_Log\';
+PATHIN = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\Silab_Pilot_Log\';
 
-PATHIN = 'C:\Users\zuse\OneDrive\Masterarbeit\Data\Silab_Pilot_Log\';
+% cd = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\Silab_Pilot_Log\';
+% PATHIN = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\Silab_Pilot_Log\';
+
+%% specify datasets
 
 datasets = {'gapSizeJune_s1.6.csv'};
 
