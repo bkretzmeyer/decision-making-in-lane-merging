@@ -31,6 +31,8 @@ clear all;
 close all;
 clc;
 
+slCharacterEncoding('UTF-8');
+
 cd('C:\Users\zuse\OneDrive\Masterarbeit\Code\')
 PATHIN = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
 PATHOUT = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\';
