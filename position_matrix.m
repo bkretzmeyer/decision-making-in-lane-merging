@@ -1,14 +1,16 @@
 %% gap size matrix for scenarios
 
-clear all
-close all
-clc
+clear all;
+close all;
+clc;
+
+slCharacterEncoding('UTF-8');
 
 cd = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\';
-PATHOUT = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes';
+PATHOUT = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\';
 
 % cd = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\';
-% PATHOUT = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes';
+% PATHOUT = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\';
 
 %% define gap sizes:
 % 6 different gap sizes in total
@@ -69,71 +71,77 @@ f2 = [c,d];
 
 %% constrcuct gap size matrix:
 
-
-
-for n = 1:2 % for both n_back levels
+for con = 1:2 % for self-driven and video condition
     
-    % predefine gap size matrix
-    G = zeros(24, 6); 
-    
-    % first gap:
-    G(:,1) = g1(randperm(length(g1)));
-    
-    % gaps 2 until 7:
-    for ind1 = 2:size(G,2) % loop through gaps
+    for n = 1:2 % for both n_back levels
         
-        % support variables:
+        % predefine gap size matrix
+        G = zeros(24, 6);
         
-        % shuffling arrays for subsequent gaps
-        temp_a2 = a2(randperm(length(a2)));
-        temp_b2 = b2(randperm(length(b2)));
-        temp_c2 = c2(randperm(length(c2)));
-        temp_d2 = d2(randperm(length(d2)));
-        temp_e2 = e2(randperm(length(e2)));
-        temp_f2 = f2(randperm(length(f2)));
+        % first gap:
+        G(:,1) = g1(randperm(length(g1)));
         
-        % indices for shuffled arrays:
-        ind_a2 = 1;
-        ind_b2 = 1;
-        ind_c2 = 1;
-        ind_d2 = 1;
-        ind_e2 = 1;
-        ind_f2 = 1;
-        
-        for ind2 = 1:size(G,1) % loop through scenarios
+        % gaps 2 until 7:
+        for ind1 = 2:size(G,2) % loop through gaps
             
-            if G(ind2,ind1-1) == a
-                G(ind2,ind1) = temp_a2(ind_a2);
-                ind_a2 = ind_a2 + 1;
-            elseif G(ind2,ind1-1) == b
-                G(ind2,ind1) = temp_b2(ind_b2);
-                ind_b2 = ind_b2 + 1;
-            elseif G(ind2,ind1-1) == c
-                G(ind2,ind1) = temp_c2(ind_c2);
-                ind_c2 = ind_c2 + 1;
-            elseif G(ind2,ind1-1) == d
-                G(ind2,ind1) = temp_d2(ind_d2);
-                ind_d2 = ind_d2 + 1;
-            elseif G(ind2,ind1-1) == e
-                G(ind2,ind1) = temp_e2(ind_e2);
-                ind_e2 = ind_e2 + 1;
-            elseif G(ind2,ind1-1) == f
-                G(ind2,ind1) = temp_f2(ind_f2);
-                ind_f2 = ind_f2 + 1;
-            end
+            % support variables:
             
-        end % end of scenario loop
+            % shuffling arrays for subsequent gaps
+            temp_a2 = a2(randperm(length(a2)));
+            temp_b2 = b2(randperm(length(b2)));
+            temp_c2 = c2(randperm(length(c2)));
+            temp_d2 = d2(randperm(length(d2)));
+            temp_e2 = e2(randperm(length(e2)));
+            temp_f2 = f2(randperm(length(f2)));
+            
+            % indices for shuffled arrays:
+            ind_a2 = 1;
+            ind_b2 = 1;
+            ind_c2 = 1;
+            ind_d2 = 1;
+            ind_e2 = 1;
+            ind_f2 = 1;
+            
+            for ind2 = 1:size(G,1) % loop through scenarios
+                
+                if G(ind2,ind1-1) == a
+                    G(ind2,ind1) = temp_a2(ind_a2);
+                    ind_a2 = ind_a2 + 1;
+                elseif G(ind2,ind1-1) == b
+                    G(ind2,ind1) = temp_b2(ind_b2);
+                    ind_b2 = ind_b2 + 1;
+                elseif G(ind2,ind1-1) == c
+                    G(ind2,ind1) = temp_c2(ind_c2);
+                    ind_c2 = ind_c2 + 1;
+                elseif G(ind2,ind1-1) == d
+                    G(ind2,ind1) = temp_d2(ind_d2);
+                    ind_d2 = ind_d2 + 1;
+                elseif G(ind2,ind1-1) == e
+                    G(ind2,ind1) = temp_e2(ind_e2);
+                    ind_e2 = ind_e2 + 1;
+                elseif G(ind2,ind1-1) == f
+                    G(ind2,ind1) = temp_f2(ind_f2);
+                    ind_f2 = ind_f2 + 1;
+                end
+                
+            end % end of scenario loop
+            
+        end % end of gap loop
         
-    end % end of gap loop
+        % store matrices for both n_back levels:
+        if n == 1 && con == 1
+            G_1 = G;
+        elseif n == 2 && con == 2
+            G_2 = G;
+        elseif n == 1 && con == 2
+            G_3 = G;
+        elseif n == 2 && con == 2
+            G_4 = G;
+        end
+        
+    end % end of n_back loop
     
-    % store matrices for both n_back levels:
-    if n == 1
-        G_1 = G;
-    elseif n == 2
-        G_2 = G;
-    end
-    
-end % end of n_back loop
+end % end of condition loop
 
 
 %% use gap_size matrix to create position matrix
@@ -144,48 +152,62 @@ truck = 360;
 % position of first Car:
 first = 345;
 
-for n = 1:2 % for both n_back levels
+for con = 1:2 % for self-driven and video condition
     
-    % adress correct gap_size matrix:
-    if n == 1
-        G = G_1;
-    elseif n == 2
-        G = G_2;
-    end
-
-    % predifine position matrix:
-    P = zeros(24,8);
-    
-    % position of truck:
-    P(:,1) = truck;
-    
-    % position of first car:
-    P(:,2) = first;
-    
-    % all other positions:
-    for c = 3:size(P,2) % loop through positions of cars 
+    for n = 1:2 % for both n_back levels
         
-        for s = 1:size(P,1) % loop through scenarios
-            
-            P(s,c) = P(s,c-1)-G(s,c-2);
-            if P(s,c) < 0
-                warning("negative position")
-            end
-            
-        end % end of scenario loop
+        % adress correct gap_size matrix:
+        if n == 1 && con == 1
+            G = G_1;
+        elseif n == 2 && con == 2
+            G = G_2;
+        elseif n == 1 && con == 2
+            G = G_3;
+        elseif n == 2 && con == 2
+            G = G_4;
+        end
         
-    end % end of position loop
+        % predifine position matrix:
+        P = zeros(24,8);
+        
+        % position of truck:
+        P(:,1) = truck;
+        
+        % position of first car:
+        P(:,2) = first;
+        
+        % all other positions:
+        for c = 3:size(P,2) % loop through positions of cars
+            
+            for s = 1:size(P,1) % loop through scenarios
+                
+                P(s,c) = P(s,c-1)-G(s,c-2);
+                if P(s,c) < 0
+                    warning("negative position")
+                end
+                
+            end % end of scenario loop
+            
+        end % end of position loop
+        
+        % store positions for both n_back levels and save:
+        if n == 1 && con == 1
+            P_1 = P;
+            save([PATHOUT,'position_matrix_self_1.mat'],'P_1')
+        elseif n == 2 && con == 1
+            P_2 = P;
+            save([PATHOUT,'position_matrix_self_2.mat'],'P_2')
+        elseif n == 1 && con == 2
+            P_3 = P;
+            save([PATHOUT,'position_matrix_video_1.mat'],'P_3')
+        elseif n == 2 && con == 2
+            P_4 = P;
+            save([PATHOUT,'position_matrix_video_2.mat'],'P_4')
+        end
+        
+    end % end of n_back loop
     
-    % store positions for both n_back levels and save:
-    if n == 1
-        P_1 = P;
-        save([PATHOUT,'position_matrix_1.mat'],'P_1')
-    elseif n == 2
-        P_2 = P;
-        save([PATHOUT,'position_matrix_2.mat'],'P_2')
-    end
-    
-end % end of n_back loop
+end % end of condition loop
 
 
         
