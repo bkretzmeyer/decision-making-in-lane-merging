@@ -162,9 +162,9 @@ fehl0 = Fs*20 - length(nback0_instructions);
 fehl1 = Fs*20 - length(nback1_instructions);
 fehl2 = Fs*20 - length(nback2_instructions);
 
-nback0_instructions = vertcat(zeros(fehl0*2, size(numbers.nr_1, 2)), nback0_instructions);
-nback1_instructions = vertcat(zeros(fehl1*2, size(numbers.nr_1, 2)), nback1_instructions);
-nback2_instructions = vertcat(zeros(fehl2*2, size(numbers.nr_1, 2)), nback2_instructions);
+nback0_instructions = vertcat(zeros(fehl0, size(numbers.nr_1, 2)), nback0_instructions);
+nback1_instructions = vertcat(zeros(fehl1, size(numbers.nr_1, 2)), nback1_instructions);
+nback2_instructions = vertcat(zeros(fehl2, size(numbers.nr_1, 2)), nback2_instructions);
 
 %% concatenate instructions and nback sounds
 
