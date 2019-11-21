@@ -82,6 +82,12 @@ for ind = 1:amount_arrays
     % store in matrix
     nback0(ind,:) = array_stimuli;
 end
+
+% check amount of targets in sequences and create list of targets:
+
+target_list_nb0 = zeros(amount_arrays, amount_stimuli);
+target_list_nb0(nback0 == 0) = 1;
+
     
 
 %% 2: nback1: 
@@ -134,12 +140,14 @@ for a = 1:amount_arrays
     end % end of value loop
 end % end of loop over needed arrays
     
-% check amount of targets in sequences:
+% check amount of targets in sequences and create list of targets:
 target_count_nb1 = zeros(amount_arrays, 1);
+target_list_nb1 = zeros(amount_arrays, amount_stimuli);
 for row = 1:amount_arrays
     for col = 2:amount_stimuli
         if nback1(row,col) == nback1(row,col-1)
             target_count_nb1(row) = target_count_nb1(row) + 1;
+            target_list_nb1(row, col) = 1;
         end
     end
 end
@@ -198,15 +206,19 @@ for a = 1:amount_arrays
     end % end of value loop
 end % end of loop over needed arrays
     
-% check amount of targets in sequences:
+% check amount of targets in sequences and create list of targets:
 target_count_nb2 = zeros(amount_arrays, 1);
+target_list_nb2 = zeros(amount_arrays, amount_stimuli);
 for row = 1:amount_arrays
     for col = 3:amount_stimuli
         if nback2(row,col) == nback2(row,col-2)
             target_count_nb2(row) = target_count_nb2(row) + 1;
+            target_list_nb2(row, col) = 1;
         end
     end
 end
+
+
 
 
 %% save resulting arrays
@@ -214,15 +226,17 @@ end
 %% nback0
 
 save([PATHOUT,'array_nback0.mat'],'nback0');
+save([PATHOUT,'targets_nback0.mat'],'target_list_nb0');
 
 %% nback1
 
 save([PATHOUT,'array_nback1.mat'],'nback1');
+save([PATHOUT,'targets_nback1.mat'],'target_list_nb1');
 
 %% nback2
 
 save([PATHOUT,'array_nback2.mat'],'nback2');
-
+save([PATHOUT,'targets_nback2.mat'],'target_list_nb2');
 
 
 
