@@ -22,6 +22,15 @@ d = 50;
 e = 60;
 f = 70;
 
+% position of Truck:
+truck = 360;
+
+% position of first Car:
+first = 340;
+
+% position of second Car:
+second = 320;
+
 
 %% scatterplot search space for gap size combinations:
 
@@ -43,9 +52,9 @@ ylim([10,80]);
 %% prepare gap size matrix with following properties:
 % 24 scenarios per workload condition
 % 7 gaps per scenario
-% 24 x 6 gaps
+% 24 x 5 gaps (first two gaps are always 20)
 % 24 different gap size combinations
-% all 24 appear in each column of the 24 x 6 matrix
+% all 24 appear in each column of the 24 x 5 matrix
 
 % combinations:
 % a:       c, d
@@ -71,17 +80,17 @@ f2 = [c,d];
 
 %% constrcuct gap size matrix:
 
-for con = 1:2 % for self-driven and video condition
+for con = 1:3 % for self-driven and video condition and training
     
     for n = 1:2 % for both n_back levels
         
         % predefine gap size matrix
-        G = zeros(24, 6);
+        G = zeros(24, 5);
         
         % first gap:
         G(:,1) = g1(randperm(length(g1)));
         
-        % gaps 2 until 7:
+        % gaps 2 until 6:
         for ind1 = 2:size(G,2) % loop through gaps
             
             % support variables:
@@ -137,6 +146,10 @@ for con = 1:2 % for self-driven and video condition
             G_3 = G;
         elseif n == 2 && con == 2
             G_4 = G;
+        elseif n == 1 && con == 3
+            G_5 = G;
+        elseif n == 2 && con == 3
+            G_6 = G;
         end
         
     end % end of n_back loop
@@ -146,13 +159,7 @@ end % end of condition loop
 
 %% use gap_size matrix to create position matrix
 
-% position of Truck:
-truck = 360;
-
-% position of first Car:
-first = 345;
-
-for con = 1:2 % for self-driven and video condition
+for con = 1:3 % for self-driven and video condition and training
     
     for n = 1:2 % for both n_back levels
         
@@ -165,6 +172,10 @@ for con = 1:2 % for self-driven and video condition
             G = G_3;
         elseif n == 2 && con == 2
             G = G_4;
+        elseif n == 1 && con == 3
+            G = G_5;
+        elseif n == 2 && con == 3
+            G = G_6;
         end
         
         % predifine position matrix:
@@ -176,12 +187,15 @@ for con = 1:2 % for self-driven and video condition
         % position of first car:
         P(:,2) = first;
         
+        % position of second car:
+        P(:,3) = second;
+        
         % all other positions:
-        for c = 3:size(P,2) % loop through positions of cars
+        for c = 4:size(P,2) % loop through positions of cars
             
             for s = 1:size(P,1) % loop through scenarios
                 
-                P(s,c) = P(s,c-1)-G(s,c-2);
+                P(s,c) = P(s,c-1)-G(s,c-3);
                 if P(s,c) < 0
                     warning("negative position")
                 end
@@ -203,6 +217,12 @@ for con = 1:2 % for self-driven and video condition
         elseif n == 2 && con == 2
             P_4 = P;
             save([PATHOUT,'position_matrix_video_2.mat'],'P_4')
+        elseif n == 1 && con == 3
+            P_5 = P;
+            save([PATHOUT,'position_matrix_training_1.mat'],'P_5')
+        elseif n == 2 && con == 3
+            P_6 = P;
+            save([PATHOUT,'position_matrix_training_2.mat'],'P_6')
         end
         
     end % end of n_back loop
