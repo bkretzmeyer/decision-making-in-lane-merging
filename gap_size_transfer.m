@@ -9,10 +9,13 @@ slCharacterEncoding('UTF-8')
 % load position matrices
 
 cd('C:\Users\zuse\OneDrive\Masterarbeit\Code')
-load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_self_1.mat');
-load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_self_2.mat');
-load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_video_1.mat');
-load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_video_2.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_self_1.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_self_2.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_video_1.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_video_2.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_1.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_2.mat');
+
 
 % cd('C:\Users\bened\OneDrive\Masterarbeit\Code')
 % load('C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_self_1.mat');
@@ -26,6 +29,8 @@ P_1 = string(P_1);
 P_2 = string(P_2);
 P_3 = string(P_3);
 P_4 = string(P_4);
+P_5 = string(P_5);
+P_6 = string(P_6);
 
 %% filenames
 
@@ -147,7 +152,7 @@ filenames_2_video = {
     
 %% read in TRF files
 
-for con = 1:2 % for self-driven and video condition
+for con = 1:3 % for self-driven and video condition and training
     
     if con == 1
         cd('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\SILAB\pire_benedikt\modules\area2')
@@ -157,6 +162,10 @@ for con = 1:2 % for self-driven and video condition
         cd('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\SILAB\pire_benedikt\modules\area2_video')
         filenames_1 = filenames_1_video;
         filenames_2 = filenames_2_video;
+    elseif con == 3
+        cd('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\SILAB\pire_benedikt\modules\area2_training')
+        filenames_1 = filenames_1_self;
+        filenames_2 = filenames_2_self;
     end
     
     for nback = 1:2 % loop over nback level
@@ -180,6 +189,8 @@ for con = 1:2 % for self-driven and video condition
                 content{count} = tline;
                 if strfind(content{count}, 'Position') % find any line with "Position" in it
                     % change position by creating whole new line:
+                    % content{count+1} = tline; % This is only needed if THWF
+                    % line is newly added
                     if nback == 1 && con == 1
                         temp = char(strcat('Position = (',filenames_1{f},'instance.lc6.l129, ',P_1(f,position),');'));
                     elseif nback == 2 && con == 1
@@ -188,9 +199,16 @@ for con = 1:2 % for self-driven and video condition
                         temp = char(strcat('Position = (',filenames_1{f},'instance.lc6.l129, ',P_3(f,position),');'));
                     elseif nback == 2 && con == 2
                         temp = char(strcat('Position = (',filenames_2{f},'instance.lc6.l129, ',P_4(f,position),');'));
+                    elseif nback == 1 && con == 3
+                        temp = char(strcat('Position = (',filenames_1{f},'instance.lc6.l129, ',P_5(f,position),');'));
+                    elseif nback == 2 && con == 3
+                        temp = char(strcat('Position = (',filenames_2{f},'instance.lc6.l129, ',P_6(f,position),');'));
                     end
                     content{count} = temp; % replace linef
+                    % content{count+1} = char('THWF = 0;'); % insert THWF value
                     position = position + 1;
+                    % count = count + 1; This is only needed if THWF
+                    % line is newly added
                 end
                 tline = fgetl(fid);
                 count = count + 1;
