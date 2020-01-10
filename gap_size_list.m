@@ -11,7 +11,7 @@ cd('C:\Users\zuse\OneDrive\Masterarbeit\Code\')
 % rows in position matrix:
 
 % self driven scenarios:
-% scenario 1:dfys
+% scenario 1:
     % position matrix self 1:
     % [1,3,4,5,6,7,8,22]
     % position matrix self 2:
@@ -62,6 +62,8 @@ load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes
 load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_video_2.mat');
 load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_1.mat');
 load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_2.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_video_1.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_video_2.mat');
 
 %% get correct gaps for each szenario
 
@@ -84,7 +86,7 @@ pos_vid_3_2 = P_4([3,16,17,18,19,20,21,24],:);
 pos_training_self(1:8,:) = P_5([1,3,4,5,6,7,8,22],:);
 pos_training_self(9:16,:) = P_6([2,3,4,5,6,7,8,22],:);
 
-pos_training_video = P_6([1,4,5,6,7,8,9,22],:);
+pos_training_video = P_7([1,4,5,6,7,8,9,22],:);
 
 % create gap size matrices
 gap_self_1 = pos_self_1(:,1:7)-pos_self_1(:,2:8);
