@@ -9,7 +9,8 @@
     % zero to nine)
 % - What target-foil-ration?
     % - something between 1/6 and 1/3?
-    % - Let's go for 1/5 to avoid too much button hitting
+    % - Let's go for 1/4 to avoid too much button hitting and too less
+    % targets
 % - What interstimulus-interval?
     % - 4 seconds (at least exists in literature as "long ISI")
 % - What total time?
@@ -35,13 +36,13 @@ clc;
 
 slCharacterEncoding('UTF-8');
 
-% cd('C:\Users\zuse\OneDrive\Masterarbeit\Code\')
-% PATHIN = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
-% PATHOUT = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\';
+cd('C:\Users\zuse\OneDrive\Masterarbeit\Code\')
+PATHIN = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
+PATHOUT = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\';
 
-cd('C:\Users\bened\OneDrive\Masterarbeit\Code\')
-PATHIN = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
-PATHOUT = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\';
+% cd('C:\Users\bened\OneDrive\Masterarbeit\Code\')
+% PATHIN = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
+% PATHOUT = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\';
 
 
 %% load sound files
@@ -59,7 +60,7 @@ end
 % define amount of arrays, amount of total stimuli and amount of targets:
 amount_arrays = 6; % only 6 as the 3 arrays for video condition need to be calculated indvidually
 amount_stimuli = 96; % take care that it is dividable by 10
-amount_targets = 19;
+amount_targets = 24;
 
 % amount stimuli and targets for video conditions, based on video length
 % as instructions last 20 seconds, subtract 20 seconds from video length
@@ -68,25 +69,25 @@ amount_targets = 19;
 
 % video_1_1: 5.50min --> 5.30 min --> 330s --> 330/5 = 66 --> 65 stimuli
 amount_stimuli_vid_1_1 = 65;
-amount_targets_vid_1_1 = round(amount_stimuli_vid_1_1/5);
+amount_targets_vid_1_1 = round(amount_stimuli_vid_1_1/4);
 % video_1_2: 5.27min --> 5.07 min --> 307s --> 307/5 = 61.4 --> 60 stimuli
 amount_stimuli_vid_1_2 = 60;
-amount_targets_vid_1_2 = round(amount_stimuli_vid_1_2/5);
+amount_targets_vid_1_2 = round(amount_stimuli_vid_1_2/4);
 % video_2_1: 5.49min --> 5.29 min --> 329s --> 329/5 = 65.8 --> 65 stimuli
 amount_stimuli_vid_2_1 = 65;
-amount_targets_vid_2_1 = round(amount_stimuli_vid_1_2/5);
+amount_targets_vid_2_1 = round(amount_stimuli_vid_1_2/4);
 % video_2_2: 5.49min --> 5.29 min --> 329s --> 329/5 = 65.8 --> 65 stimuli
 amount_stimuli_vid_2_2 = 65;
-amount_targets_vid_2_2 = round(amount_stimuli_vid_2_2/5);
+amount_targets_vid_2_2 = round(amount_stimuli_vid_2_2/4);
 % video_3_1: 5.28min --> 5.08 min --> 308s --> 308/5 = 61.6 --> 61 stimuli
 amount_stimuli_vid_3_1 = 61;
-amount_targets_vid_3_1 = round(amount_stimuli_vid_3_1/5);
+amount_targets_vid_3_1 = round(amount_stimuli_vid_3_1/4);
 % video_3_2: 5.46min --> 5.26 min --> 326s --> 326/5 = 65.2 --> 64 stimuli
 amount_stimuli_vid_3_2 = 64;
-amount_targets_vid_3_2 = round(amount_stimuli_vid_3_2/5);
-% video_training: xxxmin --> xxx min --> xxxs --> xxx/5 = xxx --> xx stimuli
-amount_stimuli_training = xx;
-amount_targets_training = round(amount_stimuli_vid_3_2/5);
+amount_targets_vid_3_2 = round(amount_stimuli_vid_3_2/4);
+% video_training: 5.37 min --> 5.17 min --> 317s --> 317/5 = 63.4 --> 62 stimuli
+amount_stimuli_training = 62;
+amount_targets_training = round(amount_stimuli_vid_3_2/4);
 
 % calculate target probability:
 target_prob = amount_targets/amount_stimuli;
@@ -129,6 +130,7 @@ for ind = 1:amount_arrays
     nback0(ind,:) = array_stimuli;
 end
 
+% create array with other numbers between one and 9 (foils):
 array_foils_vid_1_1 = randi(9,amount_stimuli_vid_1_1-amount_targets_vid_1_1,1)';
 array_foils_vid_1_2 = randi(9,amount_stimuli_vid_1_2-amount_targets_vid_1_2,1)';
 array_foils_vid_2_1 = randi(9,amount_stimuli_vid_2_1-amount_targets_vid_2_1,1)';
@@ -136,6 +138,33 @@ array_foils_vid_2_2 = randi(9,amount_stimuli_vid_2_2-amount_targets_vid_2_2,1)';
 array_foils_vid_3_1 = randi(9,amount_stimuli_vid_3_1-amount_targets_vid_3_1,1)';
 array_foils_vid_3_2 = randi(9,amount_stimuli_vid_3_2-amount_targets_vid_3_2,1)';
 array_foils_training = randi(9,amount_stimuli_training-amount_targets_training,1)';
+
+% concatenate arrays of targets and foils:
+array_stimuli_vid_1_1 = [array_targets_vid_1_1, array_foils_vid_1_1];
+array_stimuli_vid_1_2 = [array_targets_vid_1_2, array_foils_vid_1_2];
+array_stimuli_vid_2_1 = [array_targets_vid_2_1, array_foils_vid_2_1];
+array_stimuli_vid_2_2 = [array_targets_vid_2_2, array_foils_vid_2_2];
+array_stimuli_vid_3_1 = [array_targets_vid_3_1, array_foils_vid_3_1];
+array_stimuli_vid_3_2 = [array_targets_vid_3_2, array_foils_vid_3_2];
+array_stimuli_training = [array_targets_training, array_foils_training];
+
+% shuffle array:
+array_stimuli_vid_1_1 = array_stimuli_vid_1_1(randperm(length(array_stimuli_vid_1_1)));
+array_stimuli_vid_1_2 = array_stimuli_vid_1_2(randperm(length(array_stimuli_vid_1_2)));
+array_stimuli_vid_2_1 = array_stimuli_vid_2_1(randperm(length(array_stimuli_vid_2_1)));
+array_stimuli_vid_2_2 = array_stimuli_vid_2_2(randperm(length(array_stimuli_vid_2_2)));
+array_stimuli_vid_3_1 = array_stimuli_vid_3_1(randperm(length(array_stimuli_vid_3_1)));
+array_stimuli_vid_3_2 = array_stimuli_vid_3_2(randperm(length(array_stimuli_vid_3_2)));
+array_stimuli_training = array_stimuli_training(randperm(length(array_stimuli_training)));
+
+% store in matrix
+nback0_vid_1_1(1,:) = array_stimuli_vid_1_1;
+nback0_vid_1_2(1,:) = array_stimuli_vid_1_2;
+nback0_vid_2_1(1,:) = array_stimuli_vid_2_1;
+nback0_vid_2_2(1,:) = array_stimuli_vid_2_2;
+nback0_vid_3_1(1,:) = array_stimuli_vid_3_1;
+nback0_vid_3_2(1,:) = array_stimuli_vid_3_2;
+nback0_training(1,:) = array_stimuli_training;
 
 % check amount of targets in sequences and create list of targets:
 
@@ -445,7 +474,7 @@ for col = 2:amount_stimuli_vid_3_2
     end
 end
 
-for col = 2:amount_stimuli_vid_3_2
+for col = 2:amount_stimuli_training
     if nback1_training(row,col) == nback1_training(row,col-1)
         target_count_nb1_training(row) = target_count_nb1_training(row) + 1;
         target_list_nb1_training(row, col) = 1;
