@@ -10,18 +10,18 @@ clc;
 
 slCharacterEncoding('UTF-8');
 
-% cd('C:\Users\zuse\OneDrive\Masterarbeit\Code\')
-% PATHIN_SOUND = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
-% PATHIN_ARRAY = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\';
-% PATHIN_INSTRUCTIONS = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\instructions\';
-% PATHOUT = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_soundfiles\';
+cd('C:\Users\zuse\OneDrive\Masterarbeit\Code\')
+PATHIN_SOUND = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
+PATHIN_ARRAY = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\final_';
+PATHIN_INSTRUCTIONS = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\instructions\';
+PATHOUT = 'C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_soundfiles\';
 
 
-cd('C:\Users\bened\OneDrive\Masterarbeit\Code\')
-PATHIN_SOUND = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
-PATHIN_ARRAY = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\';
-PATHIN_INSTRUCTIONS = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\instructions\';
-PATHOUT = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_soundfiles\';
+% cd('C:\Users\bened\OneDrive\Masterarbeit\Code\')
+% PATHIN_SOUND = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\numbers_soundfiles\';
+% PATHIN_ARRAY = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_sequences\';
+% PATHIN_INSTRUCTIONS = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\instructions\';
+% PATHOUT = 'C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\nback\nback_soundfiles\';
 
 %% load soundfiles (single numbers)
 
@@ -75,39 +75,39 @@ for ind = 1:size(nback0,1)
     nback0cell{ind,1} = nback0(ind,:);
 end
 
-nback0cell{6,1} = nback0_vid_1_1;
-nback0cell{7,1} = nback0_vid_1_2;
-nback0cell{8,1} = nback0_vid_2_1;
-nback0cell{9,1} = nback0_vid_2_2;
-nback0cell{10,1} = nback0_vid_3_1;
-nback0cell{11,1} = nback0_vid_3_2;
-nback0cell{12,1} = nback0_training;
+nback0cell{7,1} = nback0_vid_1_1;
+nback0cell{8,1} = nback0_vid_1_2;
+nback0cell{9,1} = nback0_vid_2_1;
+nback0cell{10,1} = nback0_vid_2_2;
+nback0cell{11,1} = nback0_vid_3_1;
+nback0cell{12,1} = nback0_vid_3_2;
+nback0cell{13,1} = nback0_training;
 
 nback1cell = {};
 for ind = 1:size(nback1,1)
     nback1cell{ind,1} = nback1(ind,:);
 end
 
-nback1cell{6,1} = nback1_vid_1_1;
-nback1cell{7,1} = nback1_vid_1_2;
-nback1cell{8,1} = nback1_vid_2_1;
-nback1cell{9,1} = nback1_vid_2_2;
-nback1cell{10,1} = nback1_vid_3_1;
-nback1cell{11,1} = nback1_vid_3_2;
-nback1cell{12,1} = nback1_training;
+nback1cell{7,1} = nback1_vid_1_1;
+nback1cell{8,1} = nback1_vid_1_2;
+nback1cell{9,1} = nback1_vid_2_1;
+nback1cell{10,1} = nback1_vid_2_2;
+nback1cell{11,1} = nback1_vid_3_1;
+nback1cell{12,1} = nback1_vid_3_2;
+nback1cell{13,1} = nback1_training;
 
 nback2cell = {};
 for ind = 1:size(nback2,1)
     nback2cell{ind,1} = nback2(ind,:);
 end
 
-nback2cell{6,1} = nback2_vid_1_1;
-nback2cell{7,1} = nback2_vid_1_2;
-nback2cell{8,1} = nback2_vid_2_1;
-nback2cell{9,1} = nback2_vid_2_2;
-nback2cell{10,1} = nback2_vid_3_1;
-nback2cell{11,1} = nback2_vid_3_2;
-nback2cell{12,1} = nback2_training;
+nback2cell{7,1} = nback2_vid_1_1;
+nback2cell{8,1} = nback2_vid_1_2;
+nback2cell{9,1} = nback2_vid_2_1;
+nback2cell{10,1} = nback2_vid_2_2;
+nback2cell{11,1} = nback2_vid_3_1;
+nback2cell{12,1} = nback2_vid_3_2;
+nback2cell{13,1} = nback2_training;
 
 
 %% create soundfiles for different nbacklevels using the arrays
@@ -250,20 +250,20 @@ end
 
 for seq = 1:size(nback0_sound, 2)
     help = ['nback0\nback0_nr_',num2str(seq)];
-    if seq == 6
+    if seq == 7
         help = 'nback0\nback0_video_1_1';
-    elseif seq == 7
-        help = 'nback0\nback0_video_1_2';
     elseif seq == 8
-        help = 'nback0\nback0_video_2_1';
+        help = 'nback0\nback0_video_1_2';
     elseif seq == 9
-        help = 'nback0\nback0_video_2_2';
+        help = 'nback0\nback0_video_2_1';
     elseif seq == 10
-        help = 'nback0\nback0_video_3_1';
+        help = 'nback0\nback0_video_2_2';
     elseif seq == 11
-        help = 'nback0\nback0_video_3_2';
+        help = 'nback0\nback0_video_3_1';
     elseif seq == 12
-        help = 'nback0\nback0_training';
+        help = 'nback0\nback0_video_3_2';
+    elseif seq == 13
+        help = 'nback0\nback0_video_training';
     end    
     filename = [PATHOUT,help,'.wav'];
     audiowrite(filename,nback0_sound{seq},Fs);
@@ -273,20 +273,20 @@ end
 
 for seq = 1:size(nback1_sound, 2)
     help = ['nback1\nback1_nr_',num2str(seq)];
-    if seq == 6
+    if seq == 7
         help = 'nback1\nback1_video_1_1';
-    elseif seq == 7
-        help = 'nback1\nback1_video_1_2';
     elseif seq == 8
-        help = 'nback1\nback1_video_2_1';
+        help = 'nback1\nback1_video_1_2';
     elseif seq == 9
-        help = 'nback1\nback1_video_2_2';
+        help = 'nback1\nback1_video_2_1';
     elseif seq == 10
-        help = 'nback1\nback1_video_3_1';
+        help = 'nback1\nback1_video_2_2';
     elseif seq == 11
-        help = 'nback1\nback1_video_3_2';
+        help = 'nback1\nback1_video_3_1';
     elseif seq == 12
-        help = 'nback1\nback1_training';
+        help = 'nback1\nback1_video_3_2';
+    elseif seq == 13
+        help = 'nback1\nback1_video_training';
     end    
     filename = [PATHOUT,help,'.wav'];
     audiowrite(filename,nback1_sound{seq},Fs);
@@ -296,20 +296,20 @@ end
 
 for seq = 1:size(nback2_sound, 2)
     help = ['nback2\nback2_nr_',num2str(seq)];
-    if seq == 6
+    if seq == 7
         help = 'nback2\nback2_video_1_1';
-    elseif seq == 7
-        help = 'nback2\nback2_video_1_2';
     elseif seq == 8
-        help = 'nback2\nback2_video_2_1';
+        help = 'nback2\nback2_video_1_2';
     elseif seq == 9
-        help = 'nback2\nback2_video_2_2';
+        help = 'nback2\nback2_video_2_1';
     elseif seq == 10
+        help = 'nback2\nback2_video_2_2';
+    elseif seq == 11
         help = 'nback2\nback2_video_3_1';
-    elseif seq == 11
+    elseif seq == 12
         help = 'nback2\nback2_video_3_2';
-    elseif seq == 11
-        help = 'nback2\nback2_training';
+    elseif seq == 13
+        help = 'nback2\nback2_video_training';
     end    
     filename = [PATHOUT,help,'.wav'];
     audiowrite(filename,nback2_sound{seq},Fs);
