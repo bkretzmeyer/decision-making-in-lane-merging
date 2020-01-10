@@ -15,7 +15,8 @@ load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes
 load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_video_2.mat');
 load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_1.mat');
 load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_2.mat');
-
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_video_1.mat');
+load('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\final_position_matrix_training_video_2.mat');
 
 % cd('C:\Users\bened\OneDrive\Masterarbeit\Code')
 % load('C:\Users\bened\OneDrive - FernUniversit?t Hagen\Masterarbeit_Data\gap_sizes\position_matrix_self_1.mat');
@@ -31,6 +32,8 @@ P_3 = string(P_3);
 P_4 = string(P_4);
 P_5 = string(P_5);
 P_6 = string(P_6);
+P_7 = string(P_7);
+P_8 = string(P_8);
 
 %% filenames
 
@@ -152,7 +155,7 @@ filenames_2_video = {
     
 %% read in TRF files
 
-for con = 1:3 % for self-driven and video condition and training
+for con = 1:4 % for self-driven and video condition and training
     
     if con == 1
         cd('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\SILAB\pire_benedikt\modules\area2')
@@ -166,6 +169,10 @@ for con = 1:3 % for self-driven and video condition and training
         cd('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\SILAB\pire_benedikt\modules\area2_training')
         filenames_1 = filenames_1_self;
         filenames_2 = filenames_2_self;
+    elseif con == 4
+        cd('C:\Users\zuse\OneDrive - FernUniversit?t Hagen\SILAB\pire_benedikt\modules\area2_video_training')
+        filenames_1 = filenames_1_video;
+        filenames_2 = filenames_2_video;
     end
     
     for nback = 1:2 % loop over nback level
@@ -203,6 +210,10 @@ for con = 1:3 % for self-driven and video condition and training
                         temp = char(strcat('Position = (',filenames_1{f},'instance.lc6.l129, ',P_5(f,position),');'));
                     elseif nback == 2 && con == 3
                         temp = char(strcat('Position = (',filenames_2{f},'instance.lc6.l129, ',P_6(f,position),');'));
+                    elseif nback == 1 && con == 4
+                        temp = char(strcat('Position = (',filenames_1{f},'instance.lc6.l129, ',P_7(f,position),');'));
+                    elseif nback == 2 && con == 4
+                        temp = char(strcat('Position = (',filenames_2{f},'instance.lc6.l129, ',P_8(f,position),');'));
                     end
                     content{count} = temp; % replace linef
                     % content{count+1} = char('THWF = 0;'); % insert THWF value
