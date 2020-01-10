@@ -80,7 +80,7 @@ f2 = [c,d];
 
 %% constrcuct gap size matrix:
 
-for con = 1:3 % for self-driven and video condition and training
+for con = 1:4 % for self-driven and video condition and training
     
     for n = 1:2 % for both n_back levels
         
@@ -150,6 +150,10 @@ for con = 1:3 % for self-driven and video condition and training
             G_5 = G;
         elseif n == 2 && con == 3
             G_6 = G;
+        elseif n == 1 && con == 4
+            G_5 = G;
+        elseif n == 2 && con == 4
+            G_6 = G;
         end
         
     end % end of n_back loop
@@ -159,7 +163,7 @@ end % end of condition loop
 
 %% use gap_size matrix to create position matrix
 
-for con = 1:3 % for self-driven and video condition and training
+for con = 1:4 % for self-driven and video condition and training
     
     for n = 1:2 % for both n_back levels
         
@@ -175,6 +179,10 @@ for con = 1:3 % for self-driven and video condition and training
         elseif n == 1 && con == 3
             G = G_5;
         elseif n == 2 && con == 3
+            G = G_6;
+        elseif n == 1 && con == 4
+            G = G_5;
+        elseif n == 2 && con == 4
             G = G_6;
         end
         
@@ -223,6 +231,12 @@ for con = 1:3 % for self-driven and video condition and training
         elseif n == 2 && con == 3
             P_6 = P;
             save([PATHOUT,'position_matrix_training_2.mat'],'P_6')
+        elseif n == 1 && con == 4
+            P_7 = P;
+            save([PATHOUT,'position_matrix_training_video_1.mat'],'P_7')
+        elseif n == 2 && con == 4
+            P_8 = P;
+            save([PATHOUT,'position_matrix_training_video_2.mat'],'P_8')
         end
         
     end % end of n_back loop
